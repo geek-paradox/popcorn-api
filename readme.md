@@ -1,3 +1,3 @@
-# Gumona
+# Popcorn
 
-guess movie name
+Pop info of movies/tv series and corn them around
