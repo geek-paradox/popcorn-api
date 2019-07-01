@@ -1,10 +1,10 @@
 {
-  "name": "gumona",
+  "name": "popcorn-api",
   "version": "1.0.0",
   "description": "Crawl imdb data and let user search",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=DEVELOPMENT node app.js",
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix ."
   },

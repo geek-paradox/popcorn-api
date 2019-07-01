@@ -3,15 +3,14 @@ const graphqlHTTP = require('koa-graphql');
 const Koa = require('koa');
 const mount = require('koa-mount');
 const mongoose = require('mongoose');
-const root = require('./lib/Movie/resolver');
-const schema = require('./lib/Movie/schema');
+const schema = require('./lib/graphql');
 
 const config = require('./config');
 
 const app = new Koa();
 
 app.use(bodyParser({multipart: true,}));
-app.use(mount('/graphql', graphqlHTTP({schema, rootValue: root, graphiql: true})));
+app.use(mount('/graphql', graphqlHTTP({schema, graphiql: true})));
 
 mongoose.connect(config.db.mongoServer, {useNewUrlParser: true, useFindAndModify: false})
 	.then(() => {console.log('Database connected'); })
