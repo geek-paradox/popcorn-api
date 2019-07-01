@@ -9,7 +9,15 @@ type Movie {
 }
 
 type Query {
-    listMovies: [Movie]
+    movie(id: String!): Movie
+    movies(
+        title: String,
+        year: String,
+        rating: String,
+        language: String,
+        director: String,
+        limit: Int,
+    ): [Movie]
 }
 
 type Mutation {
