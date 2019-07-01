@@ -1,5 +1,5 @@
 {
-  "name": "gumona",
+  "name": "popcorn-api",
   "version": "1.0.0",
   "description": "Crawl imdb data and let user search",
   "main": "app.js",
