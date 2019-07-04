@@ -26,6 +26,8 @@
   "homepage": "https://github.com/geek-paradox/popcorn-api#readme",
   "dependencies": {
     "graphql": "^14.3.1",
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.5",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-graphql": "^0.8.0",
