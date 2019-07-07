@@ -1,16 +1,17 @@
-const bodyParser = require('koa-body');
 const graphqlHTTP = require('koa-graphql');
 const Koa = require('koa');
-const mount = require('koa-mount');
 const mongoose = require('mongoose');
-const schema = require('./lib/graphql');
+const Router = require('koa-router');
 
 const config = require('./config');
+const schema = require('./lib/graphql');
 
 const app = new Koa();
+const router = new Router();
 
-app.use(bodyParser({multipart: true}));
-app.use(mount('/graphql', graphqlHTTP({schema, graphiql: true})));
+router.all('/graphql', graphqlHTTP({schema, graphiql: true}));
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 mongoose.connect(config.db.mongoServer, {useNewUrlParser: true, useFindAndModify: false})
 	.then(() => {console.log('Database connected'); })
