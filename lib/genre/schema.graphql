@@ -1,0 +1,18 @@
+type Genre	{
+	id: ID,
+	name: String
+}
+
+extend type Query {
+	genre(id: Int!) : Genre
+
+	genres(id: [Int]): [Genre]
+}
+
+extend type  Mutation {
+	createGenre(name: String!): Genre
+
+	updateGenre(id: Int!, name: String): Genre
+
+	deleteGenre(id: Int!): String
+}

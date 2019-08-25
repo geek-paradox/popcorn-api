@@ -9,7 +9,7 @@ const config = require('./config');
 
 const app = new Koa();
 
-app.use(bodyParser({multipart: true,}));
+app.use(bodyParser({multipart: true}));
 app.use(mount('/graphql', graphqlHTTP({schema, graphiql: true})));
 
 mongoose.connect(config.db.mongoServer, {useNewUrlParser: true, useFindAndModify: false})
