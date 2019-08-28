@@ -8,10 +8,10 @@ const UserSchema = new mongoose.Schema({
 	email: String,
 	phone: String,
 	image: String,
-	preferredGenre: [Number],
-	movieCollection: [Number],
-	movieWishlist: [Number],
-	movieWatched: [Number],
+	preferredGenreIds: [String],
+	movieIdsCollection: [String],
+	movieIdsWishlist: [String],
+	movieIdsWatched: [String],
 });
 
 module.exports = mongoose.model('User', UserSchema);

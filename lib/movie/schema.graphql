@@ -6,7 +6,8 @@ type Movie {
     rating: Int,
     director: String,
     image: String,
-	genre: [Genre],
+	genreIds: [String],
+	genres: [Genre],
 	shortDescription: String,
 }
 
@@ -31,7 +32,7 @@ extend type Mutation {
         rating: Int!,
         director: String,
         image: String,
-		genre: [Int],
+		genreIds: [String],
 		shortDescription: String,
     ): Movie
 
@@ -43,7 +44,7 @@ extend type Mutation {
         rating: Int,
         director: String,
         image: String,
-		genre: [Int],
+		genreIds: [String],
 		shortDescription: String
     ): Movie
 

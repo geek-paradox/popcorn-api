@@ -4,15 +4,15 @@ type Genre	{
 }
 
 extend type Query {
-	genre(id: Int!) : Genre
+	genre(id: String!) : Genre
 
-	genres(id: [Int]): [Genre]
+	genres(id: [String]): [Genre]
 }
 
 extend type  Mutation {
 	createGenre(name: String!): Genre
 
-	updateGenre(id: Int!, name: String): Genre
+	updateGenre(id: String!, name: String): Genre
 
-	deleteGenre(id: Int!): String
+	deleteGenre(id: String!): String
 }
