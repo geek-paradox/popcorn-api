@@ -12,6 +12,10 @@ if (env === constants.env.production) {
 const config = {
 	db: envConfig.db,
 	port: 9000,
+	imdb: {
+		searchApi: 'https://www.imdb.com/search/title',
+		listApi: '',
+	},
 };
 
 module.exports = config;
