@@ -5,11 +5,15 @@ type Movie {
     language: String,
     rating: Int,
     director: String,
-    image: String
+    image: String,
+	genreIds: [String],
+	genres: [Genre],
+	shortDescription: String,
 }
 
-type Query {
+extend type Query {
     movie(id: String!): Movie
+
     movies(
         title: String,
         year: String,
@@ -20,7 +24,7 @@ type Query {
     ): [Movie]
 }
 
-type Mutation {
+extend type Mutation {
     createMovie(
         title: String!,
         year: Int!,
@@ -28,6 +32,8 @@ type Mutation {
         rating: Int!,
         director: String,
         image: String,
+		genreIds: [String],
+		shortDescription: String,
     ): Movie
 
     updateMovie(
@@ -38,6 +44,8 @@ type Mutation {
         rating: Int,
         director: String,
         image: String,
+		genreIds: [String],
+		shortDescription: String
     ): Movie
 
     deleteMovie(id: String!): String

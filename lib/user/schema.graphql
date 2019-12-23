@@ -1,0 +1,61 @@
+type User {
+	id: ID,
+	name: String,
+	username: String,
+	password: String,
+	country: String,
+	email: String,
+	phone: String,
+	image: String,
+	preferredGenreIds: [String],
+	preferredGenres: [Genre],
+	movieIdsCollection: [String],
+	moviesCollection: [Movie],
+	movieIdsWishlist: [String],
+	moviesWishlist: [Movie],
+	movieIdsWatched: [String],
+	moviesWatched: [Movie],
+}
+
+extend type Query {
+	user(id: String!): User
+	users(
+		id: [Int],
+		name: [String],
+		country: String,
+		limit: Int,
+	): [User]
+}
+
+extend type Mutation {
+	createUser(
+		name: String!,
+		username: String!,
+		password: String!,
+		country: String!,
+		email: String!,
+		phone: String!,
+		image: String,
+		preferredGenreIds: [String],
+		movieIdsCollection: [String],
+		movieIdsWishlist: [String],
+		movieIdsWatched: [String],
+	): User
+
+	updateUser(
+		id: String!,
+		name: String,
+		username: String,
+		password: String,
+		country: String,
+		email: String,
+		phone: String,
+		image: String,
+		preferredGenreIds: [String],
+		movieIdsCollection: [String],
+		movieIdsWishlist: [String],
+		movieIdsWatched: [String],
+	): User
+
+	deleteUser(id: String!): String
+}
