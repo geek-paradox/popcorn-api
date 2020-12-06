@@ -1,23 +1,17 @@
-const bodyParser = require('koa-body');
 const graphqlHTTP = require('koa-graphql');
 const Koa = require('koa');
-const mount = require('koa-mount');
 const mongoose = require('mongoose');
-const schema = require('./lib/graphql');
+const Router = require('koa-router');
 
 const config = require('./config');
+const schema = require('./lib/graphql');
 
 const app = new Koa();
+const router = new Router();
 
-app.use(bodyParser({multipart: true}));
-app.use(mount('/graphql', graphqlHTTP({schema, graphiql: true})));
-
-mongoose.connect(config.db.mongoServer, {useNewUrlParser: true, useFindAndModify: false})
-	.then(() => {console.log('Database connected'); })
-	.then(() => listenServer(app))
-	.catch((err) => {
-		console.error('connection error', err);
-	});
+router.post('/graphql', graphqlHTTP({schema, graphiql: true}));
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 const listenServer = (app) => {
 	const port = config.port;
@@ -28,3 +22,17 @@ const listenServer = (app) => {
 		});
 	});
 };
+
+const startServer = async () => {
+	await mongoose.connect(config.db.mongoServer, {
+		useNewUrlParser: true,
+		useFindAndModify: false
+	});
+	console.log('Database connected');
+	await listenServer(app);
+};
+
+if (require.main === module) {
+	startServer()
+		.catch((err) => console.error('connection error', err));
+}
